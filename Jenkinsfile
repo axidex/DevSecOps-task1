@@ -1,14 +1,15 @@
 pipeline {
-    //agent any
+    agent any
     environment {
         PATH="/opt/homebrew/bin/:/usr/local/go/bin/:/usr/local/bin/:${env.PATH}"
     }
 
-    agent {
-        docker {
-            image 'axidex/devsecops:latest'
-        }
-    }
+    // agent {
+    //     docker {
+    //         image 'axidex/devsecops:latest'
+    //     }
+    // }
+
     stages {
         stage('SCM') {
             steps {
