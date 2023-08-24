@@ -1,13 +1,8 @@
 pipeline {
-    agent none
+    agent any
     stages {
         stage('SCM') {
             steps {
-                agent {
-                    docker {
-                        image 'axidex/devsecops:latest'
-                    }
-                }
                 echo 'SCM..'
                 sh 'git clone https://github.com/0c34/govwa.git'
                 sh 'mv govwa src'
