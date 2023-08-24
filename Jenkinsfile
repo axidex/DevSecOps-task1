@@ -15,13 +15,13 @@ pipeline {
         }
         stage('SCA') {
             steps {
-                echo 'Deploying....'
+                echo 'SCA....'
                 
             }
         }
         stage('Results') {
             steps {
-
+                echo 'Results.....'
             }
         }
     }
