@@ -18,6 +18,7 @@ pipeline {
         stage('SBOM') {
             steps {
                 echo 'SBOM..'
+                echo '$PATH'
                 sh '$cyclonedx app -json=true  -output ./out.json src'
             }
         }
