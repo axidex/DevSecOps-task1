@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
    git \
    golang \
    wget
+RUN apt-get install docker.io -y
+
 
 # Installing cdx
 RUN mkdir cdx
