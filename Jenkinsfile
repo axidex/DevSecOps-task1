@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent none
+    // agent {
+    //     docker {
+    //         image 'axidex/devsecops:latest'
+    //     }
+    // }
     stages {
         stage('SCM') {
             steps {
@@ -11,6 +16,8 @@ pipeline {
         stage('SBOM') {
             steps {
                 echo 'SBOM..'
+                sh 'wget https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.4.1/cyclonedx-gomod_1.4.1_linux_amd64.tar.gz'
+                sh 'tar -xvzf cyclonedx-gomod_1.4.1_linux_amd64.tar.gz'
                 sh './cyclonedx-gomod app -json=true  -output ./out.json src'
             }
         }
