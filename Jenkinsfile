@@ -9,6 +9,7 @@ pipeline {
         stage('SCM') {
             steps {
                 echo 'SCM..'
+                sh 'rm -rf govwa'
                 sh 'git clone https://github.com/0c34/govwa.git'
                 sh 'rm -rf src'
                 sh 'mv govwa src'
