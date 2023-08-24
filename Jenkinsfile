@@ -6,7 +6,7 @@ pipeline {
     //     }
     // }
     environment {
-        PATH="/opt/homebrew/bin/:${env.PATH}"
+        PATH="/opt/homebrew/bin/:/usr/local/go/bin/:${env.PATH}"
     }
     stages {
         stage('SCM') {
