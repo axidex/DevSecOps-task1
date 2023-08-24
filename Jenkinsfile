@@ -24,13 +24,13 @@ pipeline {
             steps {
                 echo 'SBOM..'
                 sh 'echo $PATH'
-                sh '/opt/homebrew/bin/cyclonedx-gomod app -json=true -output ./out.json src'
+                sh '/opt/homebrew/bin/cyclonedx-gomod app -output ./bom.xml src'
             }
         }
         stage('SCA') {
             steps {
                 echo 'SCA....'
-                
+                dependencyTrackPublisher artifact: 'bom.xml', synchronous: true
             }
         }
         stage('Results') {
