@@ -1,8 +1,9 @@
 pipeline {
     agent {
-        docker { image 'axidex/devsecops:latest' }
+        docker {
+            image 'axidex/devsecops:latest'
+        }
     }
-
     stages {
         stage('SCM') {
             steps {
