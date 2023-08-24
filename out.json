@@ -1,0 +1,187 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "serialNumber": "urn:uuid:f1109ea4-4d17-49d7-984a-c0707c5f719e",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2023-08-24T09:46:24+03:00",
+    "tools": [
+      {
+        "vendor": "CycloneDX",
+        "name": "cyclonedx-gomod",
+        "version": "v1.4.0",
+        "hashes": [
+          {
+            "alg": "MD5",
+            "content": "b2609c86bbb1040733dccb6a2cfff0f6"
+          },
+          {
+            "alg": "SHA-1",
+            "content": "266ca9f7b264d6d7b7b24885d85805aee06a9f72"
+          },
+          {
+            "alg": "SHA-256",
+            "content": "883763d34405eeaffe93fcb36653535fd8ce35bc619898595df78b6b1b250b59"
+          },
+          {
+            "alg": "SHA-384",
+            "content": "99199647b3a6d2c32f8b5f6d0eca2047fdeef0c6ec3c5145fd78698b313bf01a6ad59a0d81a6a14a5162463e419fe016"
+          },
+          {
+            "alg": "SHA-512",
+            "content": "efc1d9830223dd6ac1832765faaa191b15d4f5a864bb2e787b78963bc635e62a4951293379881bedc4c1ba87ecd5a374de241cf6126b7d2c36abd7bdad32474c"
+          }
+        ],
+        "externalReferences": [
+          {
+            "url": "https://github.com/CycloneDX/cyclonedx-gomod",
+            "type": "vcs"
+          },
+          {
+            "url": "https://cyclonedx.org",
+            "type": "website"
+          }
+        ]
+      }
+    ],
+    "component": {
+      "bom-ref": "pkg:golang/github.com/govwa@v0.0.0-20230824053518-e73c500905a6?type=module",
+      "type": "application",
+      "name": "github.com/govwa",
+      "version": "v0.0.0-20230824053518-e73c500905a6",
+      "purl": "pkg:golang/github.com/govwa@v0.0.0-20230824053518-e73c500905a6?type=module\u0026goos=darwin\u0026goarch=arm64",
+      "externalReferences": [
+        {
+          "url": "https://github.com/govwa",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:gomod:build:env:CGO_ENABLED",
+          "value": "1"
+        },
+        {
+          "name": "cdx:gomod:build:env:GOARCH",
+          "value": "arm64"
+        },
+        {
+          "name": "cdx:gomod:build:env:GOOS",
+          "value": "darwin"
+        },
+        {
+          "name": "cdx:gomod:build:env:GOVERSION",
+          "value": "go1.21.0"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "pkg:golang/github.com/go-sql-driver/mysql@v1.5.0?type=module",
+      "type": "library",
+      "name": "github.com/go-sql-driver/mysql",
+      "version": "v1.5.0",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "a33c9960d416df1dc7b6a4f58e2adad3b0cdd8f02bc76bfbfe637aea019c1ceb"
+        }
+      ],
+      "purl": "pkg:golang/github.com/go-sql-driver/mysql@v1.5.0?type=module\u0026goos=darwin\u0026goarch=arm64",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-sql-driver/mysql",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/gorilla/securecookie@v1.1.1?type=module",
+      "type": "library",
+      "name": "github.com/gorilla/securecookie",
+      "version": "v1.1.1",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9a2c3b24f855f9bfe5007497cf8a9dfe737d8d1880155e45c2378ac824bc06f4"
+        }
+      ],
+      "purl": "pkg:golang/github.com/gorilla/securecookie@v1.1.1?type=module\u0026goos=darwin\u0026goarch=arm64",
+      "externalReferences": [
+        {
+          "url": "https://github.com/gorilla/securecookie",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/gorilla/sessions@v1.2.1?type=module",
+      "type": "library",
+      "name": "github.com/gorilla/sessions",
+      "version": "v1.2.1",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0c7777acf379944dd3b370fcaca910f31ff492a7de3660406a24a2fa8ec5b202"
+        }
+      ],
+      "purl": "pkg:golang/github.com/gorilla/sessions@v1.2.1?type=module\u0026goos=darwin\u0026goarch=arm64",
+      "externalReferences": [
+        {
+          "url": "https://github.com/gorilla/sessions",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/julienschmidt/httprouter@v1.3.0?type=module",
+      "type": "library",
+      "name": "github.com/julienschmidt/httprouter",
+      "version": "v1.3.0",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "534eb4f5ef6d81bb1ebb7ac120d7adf4fe3c008fc3de826ce1d37b8f024e4355"
+        }
+      ],
+      "purl": "pkg:golang/github.com/julienschmidt/httprouter@v1.3.0?type=module\u0026goos=darwin\u0026goarch=arm64",
+      "externalReferences": [
+        {
+          "url": "https://github.com/julienschmidt/httprouter",
+          "type": "vcs"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pkg:golang/github.com/govwa@v0.0.0-20230824053518-e73c500905a6?type=module",
+      "dependsOn": [
+        "pkg:golang/github.com/go-sql-driver/mysql@v1.5.0?type=module",
+        "pkg:golang/github.com/gorilla/sessions@v1.2.1?type=module",
+        "pkg:golang/github.com/julienschmidt/httprouter@v1.3.0?type=module"
+      ]
+    },
+    {
+      "ref": "pkg:golang/github.com/go-sql-driver/mysql@v1.5.0?type=module"
+    },
+    {
+      "ref": "pkg:golang/github.com/gorilla/securecookie@v1.1.1?type=module"
+    },
+    {
+      "ref": "pkg:golang/github.com/gorilla/sessions@v1.2.1?type=module",
+      "dependsOn": [
+        "pkg:golang/github.com/gorilla/securecookie@v1.1.1?type=module"
+      ]
+    },
+    {
+      "ref": "pkg:golang/github.com/julienschmidt/httprouter@v1.3.0?type=module"
+    }
+  ]
+}
