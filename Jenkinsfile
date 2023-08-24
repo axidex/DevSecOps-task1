@@ -21,9 +21,8 @@ pipeline {
         stage('SBOM') {
             steps {
                 echo 'SBOM..'
-                sh 'export PATH=$PATH:/opt/homebrew/bin/'
                 sh 'echo $PATH'
-                sh 'cyclonedx-gomod app -json=true -output ./out.json src'
+                sh '/opt/homebrew/bin/cyclonedx-gomod app -json=true -output ./out.json src'
             }
         }
         stage('SCA') {
