@@ -30,7 +30,7 @@ pipeline {
         stage('SCA') {
             steps {
                 echo 'SCA....'
-                dependencyTrackPublisher artifact: 'bom.xml', synchronous: true
+                dependencyTrackPublisher artifact: 'bom.xml', projectName: 'Test', synchronous: true
             }
         }
         stage('Results') {
