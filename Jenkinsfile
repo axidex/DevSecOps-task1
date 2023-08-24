@@ -5,6 +5,9 @@ pipeline {
     //         image 'axidex/devsecops:latest'
     //     }
     // }
+    environment {
+        PATH="/opt/homebrew/bin/:${env.PATH}"
+    }
     stages {
         stage('SCM') {
             steps {
@@ -20,7 +23,7 @@ pipeline {
                 echo 'SBOM..'
                 sh 'export PATH=$PATH:/opt/homebrew/bin/'
                 sh 'echo $PATH'
-                sh '$cyclonedx app -json=true  -output ./out.json src'
+                sh 'cyclonedx-gomod app -json=true -output ./out.json src'
             }
         }
         stage('SCA') {
