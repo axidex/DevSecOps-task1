@@ -18,9 +18,7 @@ pipeline {
         stage('SBOM') {
             steps {
                 echo 'SBOM..'
-                sh '/opt/homebrew/bin/wget https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.4.1/cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
-                sh '/usr/bin/tar -xvzf cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
-                sh './cyclonedx-gomod app -json=true  -output ./out.json src'
+                sh '/opt/homebrew/bin/cyclonedx-gomod app -json=true  -output ./out.json src'
             }
         }
         stage('SCA') {
