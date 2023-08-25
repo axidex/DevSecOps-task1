@@ -30,8 +30,8 @@ pipeline {
         stage('SCA') {
             steps {
                 echo 'SCA..'
-                // https://www.jenkins.io/doc/pipeline/steps/dependency-track/
-                dependencyTrackPublisher artifact: 'sbom', projectName: 'tmp', projectVersion: '0.1', synchronous: true, autoCreateProjects: true, failedTotalCritical: 1, failedTotalHigh: 10, failedTotalMedium: 20
+                // https://www.jenkins.io/doc/pipeline/steps/dependency-track/                                                                    // flags for interrupt
+                dependencyTrackPublisher artifact: 'sbom', projectName: 'tmp', projectVersion: '0.1', synchronous: true, autoCreateProjects: true //, failedTotalCritical: 1, failedTotalHigh: 10, failedTotalMedium: 20
                 
                 sh '''
                 curl -X 'GET' \
@@ -46,8 +46,8 @@ pipeline {
             steps {
                 echo 'Results..'
                 // docker cp container_id:path path. If u need tech logs from dependency-tracker in ur jenkins cli
-                //sh 'docker cp a6c78433e9faf908b2bdd7eddc2a9f7724c258828af53f97c6611c336f104cc8:/data/.dependency-track/dependency-track.log /Users/axidex/.jenkins/workspace/pipe1/dependency-track.log'
-                //sh 'cat dependency-track.log'
+                // sh 'docker cp a6c78433e9faf908b2bdd7eddc2a9f7724c258828af53f97c6611c336f104cc8:/data/.dependency-track/dependency-track.log /Users/axidex/.jenkins/workspace/pipe1/dependency-track.log'
+                // sh 'cat dependency-track.log'
 
 
             }
