@@ -39,12 +39,13 @@ pipeline {
                 -H 'accept: application/json' \
                 -H 'X-Api-Key: TimbOxMatBj7kSlCEq9KYJUoY70AsWmK' -o vuln.log
                     '''
-                sh 'cat vuln.log'
+                
             }
         }
         stage('Results') {
             steps {
                 echo 'Results..'
+                sh 'cat vuln.log'
                 // docker cp container_id:path path. If u need tech logs from dependency-tracker in ur jenkins cli
                 // sh 'docker cp a6c78433e9faf908b2bdd7eddc2a9f7724c258828af53f97c6611c336f104cc8:/data/.dependency-track/dependency-track.log /Users/axidex/.jenkins/workspace/pipe1/dependency-track.log'
                 // sh 'cat dependency-track.log'
