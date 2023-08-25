@@ -32,7 +32,7 @@ pipeline {
             steps {
                 echo 'SCA..'
                 // https://www.jenkins.io/doc/pipeline/steps/dependency-track/
-                dependencyTrackPublisher artifact: 'bom.xml', projectName: 'Test', projectVersion: '0.1', synchronous: true, autoCreateProjects: true, failedTotalCritical: 0, failedTotalHigh: 1, failedTotalMedium: 2
+                dependencyTrackPublisher artifact: 'sbom', projectName: 'tmp', projectVersion: '0.1', synchronous: true, autoCreateProjects: true, failedTotalCritical: 0, failedTotalHigh: 1, failedTotalMedium: 2
             }
         }
         stage('Results') {
