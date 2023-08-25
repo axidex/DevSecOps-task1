@@ -37,9 +37,9 @@ pipeline {
         }
         stage('Results') {
             steps {
-                // docker cp container_id:path path
-                docker cp a6c78433e9faf908b2bdd7eddc2a9f7724c258828af53f97c6611c336f104cc8:/data/.dependency-track/dependency-track.log /Users/axidex/.jenkins/workspace/pipe1/dependency-track.log
                 echo 'Results..'
+                // docker cp container_id:path path
+                sh 'docker cp a6c78433e9faf908b2bdd7eddc2a9f7724c258828af53f97c6611c336f104cc8:/data/.dependency-track/dependency-track.log /Users/axidex/.jenkins/workspace/pipe1/dependency-track.log'
             }
         }
     }
