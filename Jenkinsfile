@@ -31,10 +31,11 @@ pipeline {
                 echo 'SBOM..'
 
                 // https://github.com/CycloneDX/cyclonedx-gomod
-                //sh 'cd $GOPATH/bin'
+                sh 'cd $GOPATH/bin'
+                sh 'chown -R $USER: $HOME'
                 sh 'go install github.com/CycloneDX/cyclonedx-gomod@v1.0.0'
                 sh './cyclonedx-gomod app -output ./bom.xml src'
-                //sh 'cd ~/'
+                sh 'cd ~/'
             }
         }
         stage('SCA') {
