@@ -20,26 +20,30 @@ pipeline {
             steps {
                 echo 'SCM..'
 
-
+                sh 'rm -rf govwa'
+                sh 'git clone https://github.com/0c34/govwa.git'
+                sh 'rm -rf src'
+                sh 'mv govwa src'
             }
         }
         stage('SBOM') {
             steps {
                 echo 'SBOM..'
-                sh 'rm -rf govwa'
-                sh 'git clone https://github.com/0c34/govwa.git'
-                sh 'rm -rf src'
-                sh 'mv govwa src'
+
                 // https://github.com/CycloneDX/cyclonedx-gomod
                 sh 'rm -rf cyclonedx-gomod_1.3.0_linux_arm64.tar.gz'
                 sh 'wget https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.3.0/cyclonedx-gomod_1.3.0_linux_arm64.tar.gz'
                 sh 'tar -xvzf cyclonedx-gomod_1.3.0_linux_arm64.tar.gz'
-                sh './cyclonedx-gomod app -output ./bom.xml ./src'
+                sh 'cd src'
+                sh 'ls'
+                sh 'mv ../cyclonedx-gomod ./'
+                sh './cyclonedx-gomod app -output ./bom.xml ./'
             }
         }
         stage('SCA') {
             steps {
                 echo 'SCA..'
+
                 // Helpful video https://youtu.be/3_25Itx1wmI?si=0vX02xDc1Hyp0bF7
                 // https://www.jenkins.io/doc/pipeline/steps/dependency-track/                                                                    // flags for interrupt
                 dependencyTrackPublisher artifact: 'sbom', projectName: 'tmp', projectVersion: '0.1', synchronous: true, autoCreateProjects: true //, failedTotalCritical: 1, failedTotalHigh: 10, failedTotalMedium: 20                
