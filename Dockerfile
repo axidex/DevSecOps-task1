@@ -1,5 +1,5 @@
 # Don't forget about "$ xhost +" before running container
-FROM debian
+FROM ubuntu
  
 ENV TZ=Europe/Moscow
 #RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -18,10 +18,9 @@ ENV PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr
 RUN apt-get install -y \
    python3 \
    python3-pip \
-   python3-requests
 
 # Installing Python Libs
-#RUN pip install requests
+RUN pip install requests
 
 RUN apt-get install docker.io -y
 
