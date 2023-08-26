@@ -29,13 +29,14 @@ pipeline {
         }
 
         stage('SBOM') {
+            agent any
             steps {
                 echo 'SBOM..'
 
                 // https://github.com/CycloneDX/cyclonedx-gomod
                 sh 'wget https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.4.1/cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
                 sh 'tar -xvzf cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
-                
+
                 sh './cyclonedx-gomod app -output ./bom.xml src'
             }
         }
