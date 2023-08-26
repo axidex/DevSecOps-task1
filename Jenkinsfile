@@ -21,15 +21,14 @@ pipeline {
             steps {
                 echo 'SCM..'
 
-                sh 'rm -rf govwa'
-                sh 'git clone https://github.com/0c34/govwa.git'
-                sh 'rm -rf src'
-                sh 'mv govwa src'
+                // sh 'rm -rf govwa'
+                // sh 'git clone https://github.com/0c34/govwa.git'
+                // sh 'rm -rf src'
+                // sh 'mv govwa src'
             }
         }
 
         stage('SBOM') {
-            agent any
             steps {
                 echo 'SBOM..'
 
@@ -37,7 +36,8 @@ pipeline {
                 sh 'wget https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.4.1/cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
                 sh 'tar -xvzf cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
 
-                sh './cyclonedx-gomod app -output ./bom.xml src'
+                sh 'git clone https://github.com/0c34/govwa.git'
+                sh './cyclonedx-gomod app -output ./bom.xml govwa'
             }
         }
 
