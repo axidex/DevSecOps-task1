@@ -31,7 +31,7 @@ pipeline {
                 echo 'SBOM..'
 
                 // https://github.com/CycloneDX/cyclonedx-gomod
-                sh 'cyclonedx-gomod app -output ./bom.xml src'
+                sh './cyclonedx-gomod app -output ./bom.xml src'
             }
         }
         stage('SCA') {
