@@ -13,11 +13,11 @@ pipeline {
     //         image 'axidex/devsecops:latest'
     //     }
     // }
-    
+    agent { dockerfile true }
 
     stages {
         stage('SCM') {
-            agent { dockerfile true }
+            
             steps {
                 echo 'SCM..'
 
@@ -27,6 +27,7 @@ pipeline {
                 sh 'mv govwa src'
             }
         }
+
         stage('SBOM') {
             agent {
                 docker {
@@ -42,8 +43,8 @@ pipeline {
                 sh 'cyclonedx-gomod app -output ./bom.xml src'
             }
         }
+
         stage('SCA') {
-            agent { dockerfile true }
             steps {
                 echo 'SCA..'
 
@@ -52,8 +53,8 @@ pipeline {
                 dependencyTrackPublisher artifact: 'sbom', projectName: 'tmp', projectVersion: '0.1', synchronous: true, autoCreateProjects: true //, failedTotalCritical: 1, failedTotalHigh: 10, failedTotalMedium: 20                
             }
         }
+        
         stage('Results') {
-            agent { dockerfile true }
             steps {
                 echo 'Results..'
 
