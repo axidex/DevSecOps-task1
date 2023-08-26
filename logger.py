@@ -13,8 +13,8 @@ def to_log(name, url, headers):
 headers = {"X-Api-Key": "TimbOxMatBj7kSlCEq9KYJUoY70AsWmK", "accept": "application/json"}
 
 to_log(name =   'vuln.log', 
-       url =    'http://localhost:8081/api/v1/metrics/project/e561948b-93e1-4f86-8c04-1f10560df992/current',
+       url =    'http://192.168.128.1:8081/api/v1/metrics/project/e561948b-93e1-4f86-8c04-1f10560df992/current',
        headers = headers)
 to_log(name =   'vuln_description.log',
-       url =    'http://localhost:8081/api/v1/vulnerability/project/e561948b-93e1-4f86-8c04-1f10560df992',
+       url =    'http://192.168.128.1:8081/api/v1/vulnerability/project/e561948b-93e1-4f86-8c04-1f10560df992',
        headers = headers)
