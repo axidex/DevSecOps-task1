@@ -7,8 +7,7 @@ ENV TZ=Europe/Moscow
 # Installing linux libs
 RUN apt-get update && apt-get install -y \
    git \
-   wget \
-   unzip
+   wget
 
 #Installing GO
 RUN apt-get install -y \

@@ -13,7 +13,10 @@ pipeline {
     //         image 'axidex/devsecops:latest'
     //     }
     // }
-    agent { dockerfile true }
+    agent { 
+        dockerfile true 
+        reuseNode true
+        }
 
     stages {
         stage('SCM') {
@@ -35,11 +38,8 @@ pipeline {
                 // https://github.com/CycloneDX/cyclonedx-gomod
                 sh 'wget https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.4.1/cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
                 sh 'tar -xvzf cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
-                
-                sh 'wget https://github.com/0c34/govwa/archive/refs/heads/master.zip'
-                sh 'unzip master.zip'
             
-                sh './cyclonedx-gomod app -output ./bom.xml govwa-master'
+                sh 'app/cyclonedx-gomod app -output ./bom.xml src'
             }
         }
 
