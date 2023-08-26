@@ -17,7 +17,7 @@ ENV PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr
 # Installing Python
 RUN apt-get install -y \
    python3 \
-   python3-pip \
+   python3-pip
 
 # Installing Python Libs
 RUN pip install requests
