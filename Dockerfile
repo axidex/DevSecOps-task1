@@ -7,7 +7,8 @@ ENV TZ=Europe/Moscow
 # Installing linux libs
 RUN apt-get update && apt-get install -y \
    git \
-   wget
+   wget \
+   unzip
 
 #Installing GO
 RUN apt-get install -y \
@@ -28,8 +29,6 @@ RUN pip install requests
 COPY . /app
 WORKDIR /app
 
-RUN git clone https://github.com/0c34/govwa.git
-RUN mv govwa src
 # Installing cdx
 RUN mkdir cdx
 WORKDIR /cdx
