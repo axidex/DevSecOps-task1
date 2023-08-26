@@ -13,10 +13,11 @@ pipeline {
     //         image 'axidex/devsecops:latest'
     //     }
     // }
-    agent { dockerfile true }
+    
 
     stages {
         stage('SCM') {
+            agent { dockerfile true }
             steps {
                 echo 'SCM..'
 
@@ -27,16 +28,22 @@ pipeline {
             }
         }
         stage('SBOM') {
+            agent {
+                docker {
+                    image 'cyclonedx/cyclonedx-gomod'
+                }
+            }
+            
             steps {
                 echo 'SBOM..'
 
                 // https://github.com/CycloneDX/cyclonedx-gomod
-                sh 'ls'
-                sh 'mv ../cyclonedx-gomod ./'
-                sh './cyclonedx-gomod app -output ./bom.xml ./'
+
+                sh 'cyclonedx-gomod app -output ./bom.xml src'
             }
         }
         stage('SCA') {
+            agent { dockerfile true }
             steps {
                 echo 'SCA..'
 
@@ -46,6 +53,7 @@ pipeline {
             }
         }
         stage('Results') {
+            agent { dockerfile true }
             steps {
                 echo 'Results..'
 
