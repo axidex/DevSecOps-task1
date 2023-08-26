@@ -2,7 +2,6 @@
 // /opt/homebrew/opt/openjdk@17/bin/java -Dmail.smtp.starttls.enable\=true -jar /opt/homebrew/opt/jenkins-lts/libexec/jenkins.war --httpListenAddress\=127.0.0.1 --httpPort\=7070
 
 pipeline {
-    // agent any
     environment {
         PATH="/opt/homebrew/bin/:/usr/local/go/bin/:/usr/local/bin/:${env.PATH}"
     }
@@ -14,10 +13,10 @@ pipeline {
     //     }
     // }
     //agent { dockerfile true }
-    agent none
+    agent any
+
     stages {
         stage('SCM') {
-            agent any
             steps {
                 echo 'SCM..'
 
@@ -29,24 +28,18 @@ pipeline {
         }
 
         stage('SBOM') {
-            agent {
-                docker {
-                    image 'cyclonedx/cyclonedx-gomod'
-                }
-            }
             steps {
                 echo 'SBOM..'
 
                 // https://github.com/CycloneDX/cyclonedx-gomod
-                // sh 'wget https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.4.1/cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
-                // sh 'tar -xvzf cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
+                sh 'wget https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.4.1/cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
+                sh 'tar -xvzf cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
             
-                sh 'cyclonedx-gomod app -output ./bom.xml src'
+                sh './cyclonedx-gomod -output ./bom.xml src'
             }
         }
 
         stage('SCA') {
-            agent any
             steps {
                 echo 'SCA..'
 
@@ -57,7 +50,6 @@ pipeline {
         }
 
         stage('Results') {
-            agent any
             steps {
                 echo 'Results..'
 
