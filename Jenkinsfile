@@ -34,7 +34,7 @@ pipeline {
                 sh 'rm -rf cyclonedx-gomod_1.3.0_linux_arm64.tar.gz'
                 sh 'wget https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.3.0/cyclonedx-gomod_1.3.0_linux_arm64.tar.gz'
                 sh 'tar -xvzf cyclonedx-gomod_1.3.0_linux_arm64.tar.gz'
-                sh 'cyclonedx-gomod app -output ./bom.xml ./src'
+                sh './cyclonedx-gomod app -output ./bom.xml ./src'
             }
         }
         stage('SCA') {
