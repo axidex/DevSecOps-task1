@@ -7,8 +7,20 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Installing linux libs
 RUN apt-get update && apt-get install -y \
    git \
-   golang \
    wget
+
+#Installing GO
+RUN apt-get install -y \
+   golang
+
+# Installing Python
+RUN apt-get install -y \
+   python3 \
+   python3-pip
+
+# Installing Python Libs
+RUN pip install requests
+
 RUN apt-get install docker.io -y
 
 

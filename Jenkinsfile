@@ -8,11 +8,12 @@ pipeline {
     }
 
     // TODO: MacOS Jenkins can't refer to Mac docker when using agent{docker} 
-    agent {
-        docker {
-            image 'axidex/devsecops:latest'
-        }
-    }
+    // agent {
+    //     docker {
+    //         image 'axidex/devsecops:latest'
+    //     }
+    // }
+    agent { dockerfile true }
 
     stages {
         stage('SCM') {
@@ -30,7 +31,7 @@ pipeline {
                 echo 'SBOM..'
 
                 // https://github.com/CycloneDX/cyclonedx-gomod
-                sh '/opt/homebrew/bin/cyclonedx-gomod app -output ./bom.xml src'
+                sh 'cyclonedx-gomod app -output ./bom.xml src'
             }
         }
         stage('SCA') {
@@ -45,6 +46,7 @@ pipeline {
             steps {
                 echo 'Results..'
 
+                sh 'python3 logger.py'
                 sh 'cat vuln.log'
                 
                 // docker cp container_id:path path. If u need tech logs from dependency-tracker in ur jenkins cli
