@@ -29,12 +29,6 @@ pipeline {
         }
 
         stage('SBOM') {
-            agent {
-                docker {
-                    image 'cyclonedx/cyclonedx-gomod'
-                }
-            }
-            
             steps {
                 echo 'SBOM..'
 
@@ -53,7 +47,7 @@ pipeline {
                 dependencyTrackPublisher artifact: 'sbom', projectName: 'tmp', projectVersion: '0.1', synchronous: true, autoCreateProjects: true //, failedTotalCritical: 1, failedTotalHigh: 10, failedTotalMedium: 20                
             }
         }
-        
+
         stage('Results') {
             steps {
                 echo 'Results..'

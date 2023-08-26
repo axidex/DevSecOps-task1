@@ -22,20 +22,19 @@ RUN apt-get install -y \
 # Installing Python Libs
 RUN pip install requests
 
-RUN apt-get install docker.io -y
+#RUN apt-get install docker.io -y
 
+# Copying some data
+COPY . /app
+WORKDIR /app
 
+RUN git clone https://github.com/0c34/govwa.git
+RUN mv govwa src
 # Installing cdx
 RUN mkdir cdx
 WORKDIR /cdx
 RUN wget https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.4.1/cyclonedx-gomod_1.4.1_linux_amd64.tar.gz 
 RUN tar -xvzf cyclonedx-gomod_1.4.1_linux_amd64.tar.gz
 WORKDIR /
-
-# Copying some data
-COPY . /app
-WORKDIR /app
-
-RUN cp ../cdx/cyclonedx-gomod ./
 
 # Building and running
