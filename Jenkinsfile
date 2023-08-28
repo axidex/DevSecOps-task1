@@ -14,14 +14,15 @@ pipeline {
     // }
     //agent { dockerfile true }
     agent any
-
+    
     stages {
         stage('SCM') {
             steps {
                 echo 'SCM..'
+                def git_ref = params.Git.split('/')
 
-                sh 'git clone https://github.com/0c34/' + params.Git // govwa
-                sh 'mv ' + params.Git + ' src'
+                sh 'git clone ' + params.Git // https://github.com/0c34/govwa
+                sh 'mv ' + git_ref[-1] + ' src'
             }
         }
 
@@ -59,6 +60,13 @@ pipeline {
                 // sh 'docker cp a6c78433e9faf908b2bdd7eddc2a9f7724c258828af53f97c6611c336f104cc8:/data/.dependency-track/dependency-track.log /Users/axidex/.jenkins/workspace/pipe1/dependency-track.log'
                 // sh 'cat dependency-track.log'
             }
+        }
+    }
+    
+    post {
+        // Clean after build
+        always {
+                cleanWs( patterns: [[pattern: '.log', type: 'EXCLUDE']] )
         }
     }
 }
