@@ -3,13 +3,15 @@ import requests, json, sys
 project_name = sys.argv[1]
 
 def to_log(name, url, headers):
-    resp = requests.get(url,headers=headers)
+    resp = requests.get(url, headers=headers)
     parsed = json.loads(resp.content)
     with open(name, "w") as file:
         file.write(json.dumps(parsed, indent=2, sort_keys=True))
 
 def uuid_get(name, url, headers):
     resp = requests.get(url,headers=headers)
+    print(resp.content)
+    print(type(resp.content))
     parsed = json.loads(resp.content)
     for el in parsed:
         if el['name'] == name:
