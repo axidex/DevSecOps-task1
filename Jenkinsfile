@@ -27,6 +27,12 @@ pipeline {
             }
         }
 
+        stage('Build') {
+            steps {
+                sh 'cd src && go build'
+            }
+        }
+
         stage('SBOM') {
             steps {
                 echo 'SBOM..'
@@ -34,7 +40,7 @@ pipeline {
                 // https://github.com/CycloneDX/cyclonedx-gomod
                 sh 'wget https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.4.1/cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
                 sh 'tar -xvzf cyclonedx-gomod_1.4.1_linux_arm64.tar.gz'
-                sh 'cd src && ls'
+                // sh 'cd src && ls'
                 sh './cyclonedx-gomod app -output ./sbom.xml src'
             }
         }
