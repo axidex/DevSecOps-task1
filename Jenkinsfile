@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo 'SCM..'
                 
-                sh 'git clone ' + params.Git // https://github.com/0c34/govwa
+                sh 'git clone ' + params.Git // https://github.com/0c34/govwa https://github.com/netlify/gocommerce
                 sh 'mv ' + git_ref[-1] + ' src'
             }
         }
@@ -51,7 +51,7 @@ pipeline {
 
                 // Helpful video https://youtu.be/3_25Itx1wmI?si=0vX02xDc1Hyp0bF7
                 // https://www.jenkins.io/doc/pipeline/steps/dependency-track/                                                                        // flags for interrupt
-                dependencyTrackPublisher artifact: 'sbom.xml', projectName: 'tmp', projectVersion: '0.1', synchronous: true, autoCreateProjects: true //, failedTotalCritical: 1, failedTotalHigh: 10, failedTotalMedium: 20                
+                dependencyTrackPublisher artifact: 'sbom.xml', projectName: git_ref[-1], projectVersion: '0.1', synchronous: true, autoCreateProjects: true //, failedTotalCritical: 1, failedTotalHigh: 10, failedTotalMedium: 20                
             }
         }
 
@@ -59,7 +59,7 @@ pipeline {
             steps {
                 echo 'Results..'
 
-                sh 'python3 logger.py'
+                sh 'python3 logger.py git_ref[-1]'
                 sh 'cat vuln.log'
                 
                 // docker cp container_id:path path. If u need tech logs from dependency-tracker in ur jenkins cli
