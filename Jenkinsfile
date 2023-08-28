@@ -50,7 +50,7 @@ pipeline {
                 echo 'SCA..'
 
                 // Helpful video https://youtu.be/3_25Itx1wmI?si=0vX02xDc1Hyp0bF7
-                // https://www.jenkins.io/doc/pipeline/steps/dependency-track/                                                                    // flags for interrupt
+                // https://www.jenkins.io/doc/pipeline/steps/dependency-track/                                                                        // flags for interrupt
                 dependencyTrackPublisher artifact: 'sbom.xml', projectName: 'tmp', projectVersion: '0.1', synchronous: true, autoCreateProjects: true //, failedTotalCritical: 1, failedTotalHigh: 10, failedTotalMedium: 20                
             }
         }

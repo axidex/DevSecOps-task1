@@ -12,3 +12,4 @@ config
 .DS_Store
 
 src/config/config.json
+app/
