@@ -22,8 +22,8 @@ uuid = uuid_get( project_name, 'http://192.168.128.1:8081/api/v1/project', {"X-A
 headers = {"X-Api-Key": "TimbOxMatBj7kSlCEq9KYJUoY70AsWmK", "accept": "application/json"}
 
 to_log(name =   'vuln.log', 
-       url =    'http://192.168.128.1:8081/api/v1/metrics/project/' + uuid + '/current',
+       url =    'http://192.168.128.1:8081/api/v1/metrics/project/' + str(uuid) + '/current',
        headers = headers)
 to_log(name =   'vuln_description.log',
-       url =    'http://192.168.128.1:8081/api/v1/vulnerability/project/' + uuid,
+       url =    'http://192.168.128.1:8081/api/v1/vulnerability/project/' + str(uuid),
        headers = headers)
