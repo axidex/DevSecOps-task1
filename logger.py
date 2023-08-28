@@ -4,7 +4,7 @@ project_name = sys.argv[1]
 
 def to_log(name, url, headers):
     resp = requests.get(url, headers=headers)
-    parsed = json.loads(str(resp.content))
+    parsed = json.loads(resp.content)
     with open(name, "w") as file:
         file.write(json.dumps(parsed, indent=2, sort_keys=True))
 
