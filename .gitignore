@@ -8,5 +8,7 @@ config
 *.out
 *.ipynb
 *.log
+*.txt
+.DS_Store
 
 src/config/config.json
