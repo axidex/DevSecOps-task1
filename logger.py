@@ -14,7 +14,7 @@ def uuid_get(name, url, headers):
     for el in parsed:
         if el['name'] == name:
             return el["uuid"]
-uuid_get( project_name, 'http://localhost:8081/api/v1/project', {"X-Api-Key": "TimbOxMatBj7kSlCEq9KYJUoY70AsWmK", "accept": "application/json"})
+uuid = uuid_get( project_name, 'http://92.168.128.1:8081/api/v1/project', {"X-Api-Key": "TimbOxMatBj7kSlCEq9KYJUoY70AsWmK", "accept": "application/json"})
 # Must have uuid http://localhost:8081/api/v1/metrics/project/{uuid}/current 
 # and api-key from dependency-tracker GUI below
 # to execute more cURL commands check htwagger.jtp://localhost:8081/api/sson with SwaggerUI plugin in ur browser
@@ -22,8 +22,8 @@ uuid_get( project_name, 'http://localhost:8081/api/v1/project', {"X-Api-Key": "T
 headers = {"X-Api-Key": "TimbOxMatBj7kSlCEq9KYJUoY70AsWmK", "accept": "application/json"}
 
 to_log(name =   'vuln.log', 
-       url =    'http://192.168.128.1:8081/api/v1/metrics/project/e561948b-93e1-4f86-8c04-1f10560df992/current',
+       url =    'http://192.168.128.1:8081/api/v1/metrics/project/' + uuid + '/current',
        headers = headers)
 to_log(name =   'vuln_description.log',
-       url =    'http://192.168.128.1:8081/api/v1/vulnerability/project/e561948b-93e1-4f86-8c04-1f10560df992',
+       url =    'http://192.168.128.1:8081/api/v1/vulnerability/project/' + uuid,
        headers = headers)
