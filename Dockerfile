@@ -2,14 +2,14 @@
 FROM ubuntu
  
 ENV TZ=Europe/Moscow
-#RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Installing linux libs
 RUN apt-get update && apt-get install -y \
    git \
    wget
 
-#Installing GO
+# Installing GO
 RUN apt-get install -y \
    golang
 
@@ -22,7 +22,7 @@ RUN apt-get install -y \
 # Installing Python Libs
 RUN pip install requests
 
-#RUN apt-get install docker.io -y
+# RUN apt-get install docker.io -y
 
 # Copying some data
 COPY . /app

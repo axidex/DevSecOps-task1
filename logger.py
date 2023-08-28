@@ -6,9 +6,9 @@ def to_log(name, url, headers):
     with open(name, "w") as file:
         file.write(json.dumps(parsed, indent=2, sort_keys=True))
 
-#Must have uuid http://localhost:8081/api/v1/metrics/project/{uuid}/current 
-#and api-key from dependency-tracker GUI below
-#to execute more cURL commands check http://localhost:8081/api/swagger.json with SwaggerUI plugin in ur browser
+# Must have uuid http://localhost:8081/api/v1/metrics/project/{uuid}/current 
+# and api-key from dependency-tracker GUI below
+# to execute more cURL commands check htwagger.jtp://localhost:8081/api/sson with SwaggerUI plugin in ur browser
 
 headers = {"X-Api-Key": "TimbOxMatBj7kSlCEq9KYJUoY70AsWmK", "accept": "application/json"}
 
