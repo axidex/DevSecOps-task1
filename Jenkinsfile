@@ -24,7 +24,6 @@ pipeline {
                 cleanWs
                 
                 sh 'git clone ' + params.Git // https://github.com/0c34/govwa
-                sh 'rm -rf src'
                 sh 'mv ' + git_ref[-1] + ' src'
             }
         }
