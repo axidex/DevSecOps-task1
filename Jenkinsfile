@@ -20,8 +20,8 @@ pipeline {
             steps {
                 echo 'SCM..'
 
-                sh 'git clone https://github.com/0c34/${params.Git}' // govwa
-                sh 'mv ${params.Git} src'
+                sh 'git clone https://github.com/0c34/' + params.Git // govwa
+                sh 'mv ' + params.Git + ' src'
             }
         }
 
