@@ -1,6 +1,7 @@
 import requests, json, sys
 
 project_name = sys.argv[1]
+project_branch = sys.argv[2]
 
 def to_log(name, url, headers):
     resp = requests.get(url, headers=headers)

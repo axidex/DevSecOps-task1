@@ -1,6 +1,7 @@
 // Another port for jenkins
 // /opt/homebrew/opt/openjdk@17/bin/java -Dmail.smtp.starttls.enable\=true -jar /opt/homebrew/opt/jenkins-lts/libexec/jenkins.war --httpListenAddress\=127.0.0.1 --httpPort\=7070
 def git_ref = params.Git.split('/')
+
 // def rep_name = git_ref[-1].split('.')[0]
 
 pipeline {
@@ -22,7 +23,7 @@ pipeline {
             steps {
                 echo 'SCM..'
                 
-                sh 'git clone ' + params.Git // https://github.com/0c34/govwa https://github.com/netlify/gocommerce
+                sh 'git clone -b ' + params.Branch + ' ' + params.Git // https://github.com/0c34/govwa https://github.com/netlify/gocommerce
                 sh 'mv ' + git_ref[-1] + ' src'
             }
         }
@@ -51,7 +52,7 @@ pipeline {
 
                 // Helpful video https://youtu.be/3_25Itx1wmI?si=0vX02xDc1Hyp0bF7
                 // https://www.jenkins.io/doc/pipeline/steps/dependency-track/                                                                        // flags for interrupt
-                dependencyTrackPublisher artifact: 'sbom.xml', projectName: git_ref[-1], projectVersion: '0.1', synchronous: true, autoCreateProjects: true //, failedTotalCritical: 1, failedTotalHigh: 10, failedTotalMedium: 20                
+                dependencyTrackPublisher artifact: 'sbom.xml', projectName: git_ref[-1], projectVersion: params.Branch, synchronous: true, autoCreateProjects: true //, failedTotalCritical: 1, failedTotalHigh: 10, failedTotalMedium: 20                
             }
         }
 
@@ -59,7 +60,7 @@ pipeline {
             steps {
                 echo 'Results..'
 
-                sh 'python3 logger.py ' + git_ref[-1]
+                sh 'python3 logger.py ' + git_ref[-1] + ' ' + params.Branch 
                 sh 'cat vuln.log'
                 
                 // docker cp container_id:path path. If u need tech logs from dependency-tracker in ur jenkins cli
