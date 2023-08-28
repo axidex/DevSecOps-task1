@@ -1,6 +1,7 @@
 // Another port for jenkins
 // /opt/homebrew/opt/openjdk@17/bin/java -Dmail.smtp.starttls.enable\=true -jar /opt/homebrew/opt/jenkins-lts/libexec/jenkins.war --httpListenAddress\=127.0.0.1 --httpPort\=7070
 def git_ref = params.Git.split('/')
+def rep_name = git_ref[-1].split('.')[0]
 
 pipeline {
     environment {
@@ -22,7 +23,8 @@ pipeline {
                 echo 'SCM..'
                 
                 sh 'git clone ' + params.Git // https://github.com/0c34/govwa
-                sh 'mv ' + git_ref[-1] + ' src'
+                sh 'rm -rf src'
+                sh 'mv ' + rep_name + ' src'
             }
         }
 
