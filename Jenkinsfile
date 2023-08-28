@@ -21,7 +21,7 @@ pipeline {
         stage('SCM') {
             steps {
                 echo 'SCM..'
-                cleanWs
+                cleanWs()
                 
                 sh 'git clone ' + params.Git // https://github.com/0c34/govwa
                 sh 'mv ' + git_ref[-1] + ' src'
