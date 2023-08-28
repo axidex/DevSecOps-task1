@@ -59,7 +59,7 @@ pipeline {
             steps {
                 echo 'Results..'
 
-                sh 'python3 logger.py git_ref[-1]'
+                sh 'python3 logger.py ' + git_ref[-1]
                 sh 'cat vuln.log'
                 
                 // docker cp container_id:path path. If u need tech logs from dependency-tracker in ur jenkins cli
