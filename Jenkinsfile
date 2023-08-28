@@ -1,5 +1,6 @@
 // Another port for jenkins
 // /opt/homebrew/opt/openjdk@17/bin/java -Dmail.smtp.starttls.enable\=true -jar /opt/homebrew/opt/jenkins-lts/libexec/jenkins.war --httpListenAddress\=127.0.0.1 --httpPort\=7070
+def git_ref = params.Git.split('/')
 
 pipeline {
     environment {
@@ -14,13 +15,12 @@ pipeline {
     // }
     //agent { dockerfile true }
     agent any
-    
+
     stages {
         stage('SCM') {
             steps {
                 echo 'SCM..'
-                def git_ref = params.Git.split('/')
-
+                
                 sh 'git clone ' + params.Git // https://github.com/0c34/govwa
                 sh 'mv ' + git_ref[-1] + ' src'
             }
